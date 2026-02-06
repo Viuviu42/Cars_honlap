@@ -9,7 +9,7 @@ function Tabla(element){
     const cardheadDiv = document.createElement('div')
     cardheadDiv.classList.add("card-header")
     
-    cardheadDiv.innerHTML = `<h1><a href="#" onclick="Popuppp('${element.id}'); return false;">${element.brand} ${element.model}</a></h1>`
+    cardheadDiv.innerHTML = `<h1><a href="#" onclick="Popuppp('${element.id}')">${element.model}</a></h1>`
     
     const buttonContainer = document.createElement('div')
     buttonContainer.classList.add("card-buttons")
