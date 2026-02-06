@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Wrom</title>
+    <style>
+        #table {
+            margin: auto;
+        }
+        .card {
+            width: 20rem;
+            margin: 5px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+    </style>
+</head>
+
+<body>
+    <div>
+        <label for="mod">Modell</label>
+        <input type="text" id="mod">
+        <label for="brand">Márka</label>
+        <input type="text" id="brand">
+        <label for="ev">Év</label>
+        <input type="number" id="ev" min="0">
+        <button id="feltoltes">Feltölt</button>
+    </div>
+    
+    <ul id="table" class="container-fluid row">
+
+    </ul>
+</body>
+<script>
+    TablaBetolt()
+    const feltoltes = document.getElementById("feltoltes")
+    const mod = document.getElementById("mod")
+    const brand = document.getElementById("brand")
+    const ev = document.getElementById("ev")
+    
+
+    feltoltes.addEventListener("click", () => {
+        if(mod.value && brand.value && ev.value){
+            AutoFeltolt(mod.value,ev.value ,brand.value)
+        }
+        else{
+            alert("Kérlek tölts ki az összes mezőt")
+        }
+    })
+
+</script>
+
+</html>
