@@ -10,13 +10,18 @@ function Tabla(element){
                 cardheadDiv.classList.add("card-header")
 
                 cardheadDiv.innerHTML = `<h1>${element.model}</h1>`
+                
                 const delet = document.createElement('button')
                 delet.addEventListener("click", ()=>{
                     Del(element.id)
-                    
+                    table.removeChild(cardDiv)
                 })
+                delet.classList.add("card-body")
+                delet.classList.add("bg-danger")
+                delet.innerHTML = "Töröl"
                 
                 cardDiv.appendChild(cardheadDiv)
+                cardDiv.appendChild(delet)
                 table.appendChild(cardDiv)
 }
 
