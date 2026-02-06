@@ -22,7 +22,7 @@ function Tabla(element){
 
                 const change = document.createElement('button')
                 change.addEventListener("click", ()=>{
-                    location.href = `update.html`
+                    location.href = `update.html?id=${element.id}`
                 })
                 change.classList.add("card-body")
                 change.classList.add("bg-light")
@@ -81,19 +81,38 @@ function Del(id_num){
     .catch(error => console.error(error))
 }
 
-function Update(id_num,)
+function Update()
 {
-fetch(`${hely}${id_num}`)
+const urlParams = new URLSearchParams(window.location.search);
+const current_id = urlParams.get('id')
+fetch(`${hely}${current_id}`)
 .then(response => response.json())
 .then(element => {
-
-
-
+    console.log(current_id)
     document.getElementById("model").value = element.model
     document.getElementById("brand").value = element.brand
     document.getElementById("year").value = element.year
-})
-.catch(error => console.error(error))
+    document.getElementById("feltoltes").addEventListener("click", ()=>{
+        fetch(`${hely}${current_id}`,{
+            method: "PUT",
+            body: JSON.stringify({
+                model: document.getElementById("model").value,
+                brand: document.getElementById("brand").value,
+                year: document.getElementById("year").value
+            }),
+            headers: {
+                "Content-type":"application/json; charset=UTF-8"
+            }
+        })
+        .then(response => response.json())
+        .then(element => {
+            console.log(element)
+            location.href = `index.html`
+        })
+        .catch(error => console.error(error))
+    })
+}
+)
 }
 
 function Popuppp(id_num){
