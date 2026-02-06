@@ -3,35 +3,42 @@ const hely = "https://surveys-5jvt.onrender.com/api/cars/"
 
 function Tabla(element){
     const table = document.getElementById("table")
-                const cardDiv = document.createElement('li')
-                cardDiv.classList.add("col-12")
-                cardDiv.classList.add("card")
-                const cardheadDiv = document.createElement('div')
-                cardheadDiv.classList.add("card-header")
-
-                cardheadDiv.innerHTML = `<h1><a href="#" onclick="Popuppp('${element.id}')">${element.model}</a></h1>`
-                
-                const delet = document.createElement('button')
-                delet.addEventListener("click", ()=>{
-                    Del(element.id)
-                    table.removeChild(cardDiv)
-                })
-                delet.classList.add("card-body")
-                delet.classList.add("bg-danger")
-                delet.innerHTML = "Töröl"
-
-                const change = document.createElement('button')
-                change.addEventListener("click", ()=>{
-                    location.href = `update.html?id=${element.id}`
-                })
-                change.classList.add("card-body")
-                change.classList.add("bg-light")
-                change.innerHTML = "Módosít"
-                
-                cardDiv.appendChild(cardheadDiv)
-                cardDiv.appendChild(change)
-                cardDiv.appendChild(delet)
-                table.appendChild(cardDiv)
+    const cardDiv = document.createElement('li')
+    cardDiv.classList.add("car-card")
+    
+    const cardheadDiv = document.createElement('div')
+    cardheadDiv.classList.add("card-header")
+    
+    cardheadDiv.innerHTML = `<h1><a href="#" onclick="Popuppp('${element.id}'); return false;">${element.brand} ${element.model}</a></h1>`
+    
+    const buttonContainer = document.createElement('div')
+    buttonContainer.classList.add("card-buttons")
+    
+    const change = document.createElement('button')
+    change.addEventListener("click", ()=>{
+        location.href = `update.html?id=${element.id}`
+    })
+    change.classList.add("btn-action")
+    change.classList.add("btn-modify")
+    change.innerHTML = "<i class='bi bi-pencil'></i> Edit"
+    
+    const delet = document.createElement('button')
+    delet.addEventListener("click", ()=>{
+        if(confirm("Are you sure you want to delete this car?")){
+            Del(element.id)
+            table.removeChild(cardDiv)
+        }
+    })
+    delet.classList.add("btn-action")
+    delet.classList.add("btn-delete")
+    delet.innerHTML = "<i class='bi bi-trash'></i> Delete"
+    
+    buttonContainer.appendChild(change)
+    buttonContainer.appendChild(delet)
+    
+    cardDiv.appendChild(cardheadDiv)
+    cardDiv.appendChild(buttonContainer)
+    table.appendChild(cardDiv)
 }
 
 function TablaBetolt(){
