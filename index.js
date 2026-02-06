@@ -9,7 +9,7 @@ function Tabla(element){
                 const cardheadDiv = document.createElement('div')
                 cardheadDiv.classList.add("card-header")
 
-                cardheadDiv.innerHTML = `<h1>${element.model}</h1>`
+                cardheadDiv.innerHTML = `<h1><a href="#" onclick="Popuppp('${element.id}')">${element.model}</a></h1>`
                 
                 const delet = document.createElement('button')
                 delet.addEventListener("click", ()=>{
@@ -79,4 +79,29 @@ function Del(id_num){
         method: "DELETE"
     })
     .catch(error => console.error(error))
+}
+
+function Update(id_num,)
+{
+fetch(`${hely}${id_num}`)
+.then(response => response.json())
+.then(element => {
+
+
+
+    document.getElementById("model").value = element.model
+    document.getElementById("brand").value = element.brand
+    document.getElementById("year").value = element.year
+})
+.catch(error => console.error(error))
+}
+
+function Popuppp(id_num){
+fetch(`${hely}${id_num}`)
+.then(response => response.json())
+.then(element => {
+    alert(`Model: ${element.model}\nBrand: ${element.brand}\nYear: ${element.year}`)
+})
+.catch(error => console.error(error))
+
 }
