@@ -59,6 +59,7 @@ function TablaBetolt(){
         })
         .catch(error => {
             console.error(error)
+            alert("An error occurred while loading car data. Please try again.")
         })
 }
 
@@ -78,14 +79,20 @@ function AutoFeltolt(mod, ev, marka){
     .then(element => {
         Tabla(element)
     })
-    .catch(error => console.error(error))
+    .catch(error => {
+            console.error(error)
+            alert("An error occurred while adding the car. Please try again.")
+        })
 }
 
 function Del(id_num){
     fetch(`${hely}${id_num}`, {
         method: "DELETE"
     })
-    .catch(error => console.error(error))
+    .catch(error => {
+            console.error(error)
+            alert("An error occurred while deleting the car. Please try again.")
+        })
 }
 
 function Update()
@@ -116,7 +123,10 @@ fetch(`${hely}${current_id}`)
             console.log(element)
             location.href = `index.html`
         })
-        .catch(error => console.error(error))
+        .catch(error =>{
+            console.error(error)
+            alert("An error occurred while updating the car. Please try again.")
+        })
     })
 }
 )
@@ -128,6 +138,9 @@ fetch(`${hely}${id_num}`)
 .then(element => {
     alert(`Model: ${element.model}\nBrand: ${element.brand}\nYear: ${element.year}`)
 })
-.catch(error => console.error(error))
+.catch(error => {
+            console.error(error)
+            alert("An error occurred while displaying car details. Please try again.")
+        })
 
 }
