@@ -19,8 +19,17 @@ function Tabla(element){
                 delet.classList.add("card-body")
                 delet.classList.add("bg-danger")
                 delet.innerHTML = "Töröl"
+
+                const change = document.createElement('button')
+                change.addEventListener("click", ()=>{
+                    location.href = `update.html`
+                })
+                change.classList.add("card-body")
+                change.classList.add("bg-light")
+                change.innerHTML = "Módosít"
                 
                 cardDiv.appendChild(cardheadDiv)
+                cardDiv.appendChild(change)
                 cardDiv.appendChild(delet)
                 table.appendChild(cardDiv)
 }
@@ -66,8 +75,8 @@ function AutoFeltolt(mod, ev, marka){
 }
 
 function Del(id_num){
-    fetch(hely+`${id_num}`, {
-        mode: "DELETE"
+    fetch(`${hely}${id_num}`, {
+        method: "DELETE"
     })
     .catch(error => console.error(error))
 }
